@@ -1,0 +1,23 @@
+header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6441a5;
+}
+
+header > img {
+    height: 80%;
+}
+
+header > h1 {
+    color: #fff;
+    font-weight: 700;
+    margin-left: 60px;
+}
+
+@media only screen and (max-width: 415px){
+    header > h1{
+        margin-left: 0px;
+    }
+}
