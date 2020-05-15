@@ -95,6 +95,7 @@ main > input {
   text-align: cen
 }
 
+
 @media only screen and (max-width: 570px){
     main{
         flex-direction: column;

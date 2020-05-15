@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import "./style.css"
+import MemeComponent from "./MemeComponent"
 
 class MemeGenerator extends Component {
     constructor(){
@@ -18,9 +18,9 @@ class MemeGenerator extends Component {
     componentDidMount(){
         fetch("https://api.imgflip.com/get_memes")
             .then(response => response.json())
-            .then(data => { 
-                console.log(data) 
-                //const {memes} = data
+            .then(response => {                 
+                const { memes } = response.data                
+                this.setState({allMemeImages: memes})
             })
     }
 
@@ -34,40 +34,13 @@ class MemeGenerator extends Component {
     handleSubmit(event) {
         event.preventDefault()
         const randomNumber = Math.floor(Math.random() * this.state.allMemeImages.length)
-        const urlRandomImage = this.state.allMemeImages[randomNumber].url
+        const urlRandomImage = this.state.allMemeImages[randomNumber].url        
         this.setState({randomImage: urlRandomImage})
     }
 
     render() {
         return(
-            <main>
-                <form onSubmit={this.handleSubmit}>    
-                    <input 
-                        name="topText"
-                        value={this.state.topText}
-                        type="text"
-                        onChange={this.handleChange}
-                    />
-
-                    <input 
-                        name="bottomText"
-                        value={this.state.bottomText}
-                        type="text"
-                        onChange={this.handleChange}
-                    />
-
-                    <button>Generate</button>
-
-                      
-
-                    <div className="meme">
-                        <img src="http://i.imgflip.com/1bij.jpg" alt=""/>
-                        <h2 className="top">{this.state.topText}</h2>
-                        <h2 className="bottom">{this.state.bottomText}</h2>
-                    
-                    </div>
-                </form>
-            </main>
+            <MemeComponent handleChange={this.handleChange} handleSubmit={this.handleSubmit} data={this.state}/>
         )
     }
 }
