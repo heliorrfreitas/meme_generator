@@ -71,7 +71,6 @@ main > input {
     font-size: 25px;
     letter-spacing: 1.5px;
     color: white;
-    background: #6441A5;
 }
 
 .meme-form > input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
